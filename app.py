@@ -56,7 +56,7 @@ menu = st.sidebar.radio(
     ["Tableau de bord", "👤 Fidèles", "💰 Cotisations & Dîmes", "📅 Programmes & Fêtes", "📢 Annonces"]
 )
 
-# 1. TABLEAU DE BORD (MODIFIÉ AVEC LES RECTANGLES DE COULEURS ET TEXTES GRAS)
+# 1. TABLEAU DE BORD
 if menu == "Tableau de bord":
     st.subheader("📊 Vue d'ensemble")
     
@@ -69,7 +69,6 @@ if menu == "Tableau de bord":
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        # Rectangle BLEU pour les Fidèles
         st.markdown(f"""
             <div style="background-color: #1E3A8A; padding: 20px; border-radius: 10px; text-align: center; color: white; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
                 <p style="margin: 0; font-size: 16px; font-weight: bold; text-transform: uppercase;">Total Fidèles</p>
@@ -78,7 +77,6 @@ if menu == "Tableau de bord":
         """, unsafe_allow_html=True)
         
     with col2:
-        # Rectangle VERT pour les Cotisations
         st.markdown(f"""
             <div style="background-color: #065F46; padding: 20px; border-radius: 10px; text-align: center; color: white; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
                 <p style="margin: 0; font-size: 16px; font-weight: bold; text-transform: uppercase;">Total Cotisations</p>
@@ -87,7 +85,6 @@ if menu == "Tableau de bord":
         """, unsafe_allow_html=True)
         
     with col3:
-        # Rectangle ORANGE pour les Programmes
         st.markdown(f"""
             <div style="background-color: #C2410C; padding: 20px; border-radius: 10px; text-align: center; color: white; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
                 <p style="margin: 0; font-size: 16px; font-weight: bold; text-transform: uppercase;">Programmes à venir</p>
@@ -196,3 +193,9 @@ elif menu == "📅 Programmes & Fêtes":
 
     st.markdown("### 📋 Liste des programmes")
     if not st.session_state.base_programmes.empty:
+        st.dataframe(st.session_state.base_programmes, use_container_width=True)
+    else:
+        st.write("Aucun événement prévu au calendrier.")
+
+# 5. GESTION DES ANNONCES
+elif menu == "📢 Annonces":
